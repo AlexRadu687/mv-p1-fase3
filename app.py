@@ -1,6 +1,6 @@
 """
 Práctica 1 — Modelización y Visualización de Datos (URV)
-Rediseño interactivo: empleo vs. producción manufacturera en EE. UU. (2000–actualidad)
+Rediseño interactivo: empleo vs. producción manufacturera en EE. UU. (2000-actualidad)
 
 Ejecutar:  streamlit run app.py
 
@@ -118,23 +118,23 @@ primer_mes, ultimo_mes = datos["fecha"].iloc[0], datos["fecha"].iloc[-1]
 st.caption("REDISEÑO · EMPLEO Y PRODUCCIÓN MANUFACTURERA EN EE. UU.")
 st.title("Fabricar :blue[más] con :orange[menos] gente")
 st.write(
-    "El gráfico original medía la industria solo por los empleos de 2023–2026. Con 25 años de contexto "
-    "se ve otra historia: hoy la industria de EE. UU. produce más que en 2000 con casi un 27 % menos de "
+    "El gráfico original medía la industria solo por los empleos de 2023-2026. Con 25 años de contexto "
+    "se ve otra historia: hoy la industria de Estados Unidos produce más que en el año 2000 con casi un 27% menos de "
     "trabajadores. Los cambios de los últimos años son una fracción mínima de ese cambio."
 )
 
 # Controles ---------------------------------------------------------------------
 PERIODOS = {
-    "2000–hoy": (primer_mes, ultimo_mes, None),
-    "2000–2007": (primer_mes, pd.Timestamp("2007-12-01"),
+    "2000-hoy": (primer_mes, ultimo_mes, None),
+    "2000-2007": (primer_mes, pd.Timestamp("2007-12-01"),
                   "La producción sube mientras el empleo cae: es el tramo en el que de verdad se fabrica "
                   "más con menos gente y la producción por trabajador se dispara."),
-    "2008–hoy": (pd.Timestamp("2008-01-01"), ultimo_mes,
+    "2008-hoy": (pd.Timestamp("2008-01-01"), ultimo_mes,
                  "Desde 2008 la producción no ha vuelto a su máximo de finales de 2007 y el empleo se ha "
                  "estabilizado. La producción por trabajador acaba casi donde estaba: el gran salto es anterior."),
     "Ventana del gráfico original": (pd.Timestamp(INICIO_ORIGINAL), ultimo_mes,
                                      "Este es el tramo que mostraba el gráfico original. Con el eje vertical "
-                                     "de todo el periodo, la variación de 2023–2026 apenas mueve las líneas."),
+                                     "de todo el periodo, la variación de 2023-2026 apenas mueve las líneas."),
     "Personalizado": (primer_mes, ultimo_mes, None),
 }
 
@@ -177,13 +177,13 @@ if explicacion:
     st.info(explicacion)
 
 # Gráfico 1: empleo vs. producción ----------------------------------------------
-# El eje vertical usa siempre el rango de TODO el periodo: al acercarse a 2023–2026 la escala
+# El eje vertical usa siempre el rango de TODO el periodo: al acercarse a 2023-2026 la escala
 # no se reajusta, y así los cambios pequeños no parecen grandes (el truco del original).
 rango_x = [inicio, fin]
 ambos = pd.concat([df["i_empleo"], df["i_produccion"]])
 rango_y = [ambos.min() - 3, ambos.max() + 3]
 
-st.subheader(f"Empleo vs. producción (índice, media de {anio_base} = 100)")
+st.subheader(f"Empleo vs producción (índice: media de {anio_base} = 100)")
 fig = go.Figure()
 fig.add_scatter(x=df["fecha"], y=df["i_produccion"], name="Producción (IPMAN)",
                 line=dict(color=C_PRODUCCION, width=2.5), customdata=df["produccion"],

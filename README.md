@@ -17,7 +17,7 @@ streamlit run app.py
 ## Preprocesamiento (funciones de `app.py`)
 
 1. **Outliers** (`marcar_outliers`, `suavizar`): se marcan los meses con |z| > 2 en la variación mensual del empleo
-   (enero de 2009 y abril-junio de 2020) y se ofrece una media móvil de 3 meses.
+   (enero de 2009 y abril - junio de 2020) y se ofrece una media móvil de 3 meses.
 2. **Variable derivada** (`anadir_productividad`): producción por trabajador = IPMAN / MANEMP.
 3. **Normalización** (`indexar`): índice = valor / media del año base × 100, para comparar en un mismo eje
    dos magnitudes con unidades distintas.
